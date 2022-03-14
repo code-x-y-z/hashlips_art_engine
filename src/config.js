@@ -5,9 +5,11 @@ const { NETWORK } = require(`${basePath}/constants/network.js`);
 const network = NETWORK.eth;
 
 // General metadata for Ethereum
-const namePrefix = "Your Collection";
-const description = "Remember to replace this description";
-const baseUri = "ipfs://NewUriToReplace";
+const namePrefix = "HappyHippyClub";
+const description = "Welcome to Happy Hippy Club !";
+// ipfs-car로 root CID 생성 후 여기에 세팅.
+const baseUri = "ipfs://bafybeiddfvs7rjcrabdlq7e467nboj75db5clzp7pmpm2uvbo6zm76xizq";
+//const baseUri = "ipfs://{rootCID}/{IPFS Folder}";
 
 const solanaMetadata = {
   symbol: "YC",
@@ -23,21 +25,29 @@ const solanaMetadata = {
 
 // If you have selected Solana then the collection starts from 0 automatically
 const layerConfigurations = [
-  {
-    growEditionSizeTo: 5,
+  { // 12개를 생성하는데,, 10개는 위에껄로, 2개는 아래껄로 생성. BodyGold가 2개만 생성됨.
+    growEditionSizeTo: 10,
     layersOrder: [
       { name: "Background" },
-      { name: "Eyeball" },
-      { name: "Eye color" },
-      { name: "Iris" },
-      { name: "Shine" },
-      { name: "Bottom lid" },
-      { name: "Top lid" },
+      { name: "Body" },
+      { name: "Ear" },
+      { name: "Eyes" },
+      { name: "Mouth" }
+    ],
+  },
+  {
+    growEditionSizeTo: 12,
+    layersOrder: [
+      { name: "Background" },
+      { name: "BodyGold" },
+      { name: "Ear" },
+      { name: "Eyes" },
+      { name: "Mouth" }
     ],
   },
 ];
 
-const shuffleLayerConfigurations = false;
+const shuffleLayerConfigurations = true;
 
 const debugLogs = false;
 
@@ -71,8 +81,9 @@ const pixelFormat = {
   ratio: 2 / 128,
 };
 
+// 자동으로 백그라운드 컬러 생성 
 const background = {
-  generate: true,
+  generate: false,
   brightness: "80%",
   static: false,
   default: "#000000",
